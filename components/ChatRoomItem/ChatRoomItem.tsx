@@ -3,7 +3,7 @@ import { Image, Text, View } from "react-native";
 import { styles } from "./styles";
 
 const ChatRoomItem = ({
-	chatRoom: { id, users, lastMessage, newMessages },
+	chatRoom: {users, lastMessage, newMessages },
 }) => {
 	const user = users[1];
 	return (
