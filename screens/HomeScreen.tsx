@@ -3,7 +3,7 @@ import { FlatList, StyleSheet, View } from "react-native";
 import ChatRoomsData from "../assets/dummy-data/ChatRooms";
 import ChatRoomItem from "../components/ChatRoomItem";
 
-const TabOneScreen = () => {
+const HomeScreen = () => {
 	return (
 		<View style={styles.page}>
 			<FlatList
@@ -17,7 +17,7 @@ const TabOneScreen = () => {
 	);
 };
 
-export default TabOneScreen;
+export default HomeScreen;
 
 const styles = StyleSheet.create({
 	page: {

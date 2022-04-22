@@ -1,13 +1,19 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 
-const ChatRoomItem = ({
-	chatRoom: {users, lastMessage, newMessages },
-}) => {
+const ChatRoomItem = ({ chatRoom: {id, users, lastMessage, newMessages } }:any) => {
 	const user = users[1];
+
+	const navigation = useNavigation();
+
+	const onPress = () => {
+		navigation.navigate<any>("ChatRoom", { id });
+	};
+
 	return (
-		<View style={styles.container}>
+		<TouchableOpacity activeOpacity={0.8} onPress={onPress} style={styles.container}>
 			<Image
 				source={{
 					uri: user.imageUri,
@@ -30,7 +36,7 @@ const ChatRoomItem = ({
 					{lastMessage.content}
 				</Text>
 			</View>
-		</View>
+		</TouchableOpacity>
 	);
 };
 
