@@ -8,22 +8,23 @@ import {
 	DarkTheme,
 	DefaultTheme,
 	NavigationContainer,
+	useNavigation,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import {
 	ColorSchemeName,
 	Image,
+	Platform,
 	Pressable,
 	Text,
 	useWindowDimensions,
 	View,
-	Platform,
 } from "react-native";
 import ChatRoomScreen from "../screens/ChatRoomScreen";
 import HomeScreen from "../screens/HomeScreen";
-import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
+import UsersScreen from "../screens/UsersScreen";
 import { RootStackParamList } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 
@@ -50,7 +51,7 @@ function RootNavigator() {
 			<Stack.Screen
 				name="Home"
 				component={HomeScreen}
-				options={{ headerTitle:HomeHeader}}
+				options={{ headerTitle: HomeHeader }}
 			/>
 			<Stack.Screen
 				name="ChatRoom"
@@ -61,19 +62,25 @@ function RootNavigator() {
 				})}
 			/>
 			<Stack.Screen
+				name="Users"
+				component={UsersScreen}
+				options={() => ({
+					title: "Users",
+				})}
+			/>
+			<Stack.Screen
 				name="NotFound"
 				component={NotFoundScreen}
 				options={{ title: "Oops!" }}
 			/>
-			<Stack.Group screenOptions={{ presentation: "modal" }}>
-				<Stack.Screen name="Modal" component={ModalScreen} />
-			</Stack.Group>
 		</Stack.Navigator>
 	);
 }
 
 const HomeHeader = () => {
 	const { width } = useWindowDimensions();
+
+	const navigation = useNavigation();
 
 	return (
 		<View
@@ -109,7 +116,7 @@ const HomeHeader = () => {
 					style={{ marginHorizontal: 10 }}
 				/>
 			</Pressable>
-			<Pressable>
+			<Pressable onPress={()=>navigation.navigate("Users")}>
 				<Feather
 					name="edit-2"
 					size={24}

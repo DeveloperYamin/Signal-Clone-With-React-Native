@@ -14,8 +14,8 @@ declare global {
 export type RootStackParamList = {
 	ChatRoom: undefined;
 	Home: undefined;
-	Modal: undefined;
 	NotFound: undefined;
+	Users: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
